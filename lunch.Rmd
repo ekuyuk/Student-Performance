@@ -1,7 +1,5 @@
 ---
-title: "plots"
-author: "Elif Kuyuk"
-date: "2022-08-17"
+title: "Effects of Lunch on Student Performance"
 output: html_document
 ---
 
@@ -10,7 +8,7 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(ggthemes)
 ```
-
+## Plot 1
 ```{r}
 student<- read.csv("StudentsPerformance.csv")
 student|> 
@@ -22,6 +20,7 @@ ggplot(mapping = aes(y = lunch, x = reading.score))+
   labs(title = "Lunch Type vs Reading Score", subtitle = "Higher score quartile for both male and female students recieving a standard lunch.", x = "Reading Scores", y = "Lunch Type", caption = "Kaggle: JAKKI SESHAPANPU 2018")
 ```
 
+## Plot 2
 ```{r}
 student<- read.csv("StudentsPerformance.csv")
 student|> 
@@ -32,6 +31,7 @@ ggplot(mapping = aes(y = lunch, x = writing.score))+
   theme_calc()+
   labs(title = "Lunch Type vs Writing Score", subtitle = "Higher writing scores can be observed for students with a standard lunch. ", x = "Writing Scores", y = "Lunch Type", caption = "Kaggle: JAKKI SESHAPANPU 2018")
 ```
+## Plot 3  
 
 ```{r}
 student<- read.csv("StudentsPerformance.csv")
@@ -43,5 +43,12 @@ ggplot(mapping = aes(y = lunch, x = math.score))+
   theme_calc()+
   labs(title = "Lunch Type vs Math Score", subtitle = "Higher writing scores can be observed for students with a standard lunch. ", x = "Math Scores", y = "Lunch Type", caption = "Kaggle: JAKKI SESHAPANPU 2018")
 ```
+
+
+## **Summary**  
+
+As visible in the plots above, the mean test score for all tests is higher than the mean test score for students recieving a free/reduced lunch. 
+
+Based on previous studies, 
 ```
 

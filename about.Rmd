@@ -3,7 +3,34 @@ title: "About this site"
 description: |
   Some additional details about the website
 ---
+## About Me 
+I am Elif Kuyuk, a current junior at Bartlett High School. Among many various hobbies, I enjoy hiking and gardening. Learning new things is always a pleasure, especially if accompanied with friends. 
 
+**Contact Information** 
+
+Email: ekuyuk04@gmail.com 
+
+Github: https://github.com/ekuyuk 
+
+## About the Project 
+
+This project briefly observes and analyzes what might be affecting a students performance. Family life, genetics, environmental cues; these all play a big role in a students success. 
+Finding out the main factors, and potentially inspiring us students to beneficially work with such factors, is the main goal. 
+
+*Goals* 
+
+* Comparing genetic factors (race, gender)
+* Analyzing individual factors (study session before test, lunch type)
+* Finding out the main factor affecting a students behavior from the factors included in the data set. 
+
+*Obstacles: Expected*
+
+* Organizing the data, finding out the best way to correctly visualize the patterns.
+* Column/row management and graphing 
+
+
+""This is Data Science""  
+              ~ Preceptor 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```

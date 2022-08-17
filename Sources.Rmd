@@ -1,0 +1,16 @@
+---
+title: "Sources"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Research: 
+
+## Data: 
+
+Data "Students Performances in Exams" was originally composed by JAKKI SESHAPANPU, which was last updated 4 years ago. 
+
+*Link:* https://www.kaggle.com/datasets/spscientist/students-performance-in-exams?resource=download

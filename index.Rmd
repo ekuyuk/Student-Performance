@@ -5,7 +5,20 @@ description: |
   handle and control these factors will increase a students performance.
 site: distill::distill_website
 ---
+## A Quick Glance 
 
+A persons character, personality, all morph and set whilst their in school. Their teachers, the environment they're in, the academic feedback they receive; all set the stones for the path they will pursue in life. In most scenarios, higher academic performance leads to higher satisfaction in the career they pursue.  
+
+Using data from Kaggle, 4 different factors were observed. 
+
+* Ethnicity 
+* Gender 
+* Parental Level of Education 
+* Lunch Type 
+
+These factors were then compared with reading, writing, and math scores. 
+
+## Overview Of Reading Scores
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
@@ -30,7 +43,7 @@ student<- read.csv("StudentsPerformance.csv")
 student|> 
 select(parental.level.of.education, math.score, writing.score, reading.score, gender, race.ethnicity)|> 
 ggplot(mapping = aes(y = parental.level.of.education, x = math.score, color = gender))+
-  geom_point(alpha = 0.3, size = 5) + 
+  geom_point(alpha = 0.3, size = 1) + 
   facet_wrap(~race.ethnicity)+ 
   theme_calc()+
   labs(title = "Math Scores", subtitle = "Male students have higher scores.", x = "Math Scores", y = "Parental Level of Education", caption = "Kaggle: JAKKI SESHAPANPU 2018")
