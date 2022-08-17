@@ -8,11 +8,44 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(ggthemes)
 ```
-## Plot 1
+After Viewing the relationship between parental levels of education, gender, and ethnicity, one wonders how these all tie in with the factor of nutrition, lunch. 
+
+*Below is the plot depicting how many students in this data were of each category, and of those, how many received either standard or free/reduced lunch.* 
+
 ```{r}
 student<- read.csv("StudentsPerformance.csv")
 student|> 
-select(lunch, math.score, writing.score, reading.score, gender, race.ethnicity)|> 
+select(lunch, math.score, writing.score, reading.score, gender, race.ethnicity, parental.level.of.education)|> 
+ggplot(mapping = aes( y = parental.level.of.education, fill = lunch))+ 
+  geom_bar()+ 
+  theme_calc()+
+  labs(title = "Level of Education vs Lunch", subtitle = "All levels have standard lunch count either equal to 50%, or more", y = "Parental Level of Education", x = "Count", caption = "Kaggle: JAKKI SESHAPANPU 2018")
+```
+With all levels of education having about the same ratios, it awakens interest to find out if a difference in lunch in each level is causing high/low scores. 
+
+*Below is one visual illustrating the correlation between the four factors: lunch, parental level of education, and gender.* 
+
+It is clear that "high school" and "some high school" are most heavily affected by lunch type. In terms of gender distribution, in most parental levels of education and lunch types, female students have a lower average. 
+
+```{r}
+student<- read.csv("StudentsPerformance.csv")
+student|> 
+select(lunch, math.score, writing.score, reading.score, gender, race.ethnicity, parental.level.of.education)|> 
+ggplot(mapping = aes(y = lunch, x = math.score, color = gender))+ 
+  geom_point(alpha = 0.3, size = 4)+ 
+  facet_wrap(~parental.level.of.education)+ 
+  theme_calc()+
+  labs(title = "Parental level of education vs Lunch vs Math Scores", subtitle = "Higher scores for both male and female students recieving a standard lunch.", x = "Math Scores", y = "Lunch Type", caption = "Kaggle: JAKKI SESHAPANPU 2018")
+```
+
+**The following plots compare the statistics for each gender, by test type and lunch type.** 
+
+## Plot 1
+
+```{r}
+student<- read.csv("StudentsPerformance.csv")
+student|> 
+select(lunch,parental.level.of.education, math.score, writing.score, reading.score, gender, race.ethnicity)|> 
 ggplot(mapping = aes(y = lunch, x = reading.score))+ 
   geom_boxplot(alpha = 0.5, color = "brown1", size = 2)+ 
   facet_wrap(~gender)+ 
@@ -21,6 +54,7 @@ ggplot(mapping = aes(y = lunch, x = reading.score))+
 ```
 
 ## Plot 2
+
 ```{r}
 student<- read.csv("StudentsPerformance.csv")
 student|> 
@@ -31,7 +65,7 @@ ggplot(mapping = aes(y = lunch, x = writing.score))+
   theme_calc()+
   labs(title = "Lunch Type vs Writing Score", subtitle = "Higher writing scores can be observed for students with a standard lunch. ", x = "Writing Scores", y = "Lunch Type", caption = "Kaggle: JAKKI SESHAPANPU 2018")
 ```
-## Plot 3  
+## Plot 3
 
 ```{r}
 student<- read.csv("StudentsPerformance.csv")
@@ -45,10 +79,5 @@ ggplot(mapping = aes(y = lunch, x = math.score))+
 ```
 
 
-## **Summary**  
-
-As visible in the plots above, the mean test score for all tests is higher than the mean test score for students recieving a free/reduced lunch. 
-
-Based on previous studies, 
 ```
 
