@@ -66,7 +66,9 @@ ggplot(mapping = aes(y = parental.level.of.education, x = writing.score, color =
   geom_point(alpha = 0.3, size = 5) + 
   facet_wrap(~race.ethnicity) +
   theme_calc()+
-  labs(title = "Writing Scores", subtitle = "Group C and D have a mostly tight range, whereas many outliers are noticable in other ethnic groups.", x = "Writing Scores", y = "Parental Level of Education", caption = "Kaggle: JAKKI SESHAPANPU 2018")
+  labs(title = "Writing Scores", 
+       subtitle = "Group C and D have a mostly tight range, whereas many outliers
+are noticable in other ethnic groups.", x = "Writing Scores", y = "Parental Level of Education", caption = "Kaggle: JAKKI SESHAPANPU 2018")
 ```
 These plots, comparing parental level of education, alongside the graphics under the "lunch" page, can lead to many different conclusions and inferences. 
 

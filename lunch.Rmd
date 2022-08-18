@@ -2,12 +2,12 @@
 title: "Effects of Lunch on Student Performance"
 output: html_document
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(ggthemes)
 ```
+
 After Viewing the relationship between parental levels of education, gender, and ethnicity, one wonders how these all tie in with the factor of nutrition, lunch. 
 
 *Below is the plot depicting how many students in this data were of each category, and of those, how many received either standard or free/reduced lunch.* 
