@@ -9,7 +9,7 @@ library(tidyverse)
 library(ggthemes)
 library(ggplot2)
 ```
-
+**1.**
 ```{r}
 student<- read.csv("StudentsPerformance.csv")
 
@@ -22,7 +22,7 @@ ggplot(mapping = aes(y = lunch, x = math.score)) + # Assign variables
   theme(panel.background = element_rect(fill = "azure2")) + # added background color
   labs(title = "Lunch Type vs Math Score", subtitle = "Higher writing scores can be observed for students with a standard lunch. ", x = "Math Scores", y = "Lunch Type", caption = "Kaggle: JAKKI SESHAPANPU 2018") # added titles to plot
 ```
-
+**2.**
 ```{r}
 student<- read.csv("StudentsPerformance.csv")
 # Starting data analysis
@@ -34,9 +34,9 @@ ggplot(mapping = aes(y = parental.level.of.education, x = math.score, color = ge
   geom_point(alpha = 0.3, size = 3) + # plot
   facet_wrap(~race.ethnicity)+ # seperate by ethnic groups
   theme_calc()+ #added preffered theme
-  labs(title = "Math Scores", subtitle = "Male students have higher scores.", x = "Math Scores", y = "Parental Level of Education", caption = "Kaggle: JAKKI SESHAPANPU 2018") # added titles 
+  labs(title = "Education and Race", subtitle = "Male students have higher scores.", x = "Math Scores", y = "Parental Level of Education", caption = "Kaggle: JAKKI SESHAPANPU 2018") # added titles 
 ```
-
+**3.**
 ```{r}
 student<- read.csv("StudentsPerformance.csv")
 

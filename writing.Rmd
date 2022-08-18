@@ -37,7 +37,7 @@ ggplot(mapping = aes(y = parental.level.of.education, x = writing.score, color =
   geom_point(alpha = 0.3, size = 3) + # creates graph
   facet_wrap(~race.ethnicity) + # seperated by ethnic group
   theme_calc() + # added proffered theme
-  labs(title = "Writing Scores", 
+  labs(title = "Education and Race", 
        subtitle = "Group C and D have a mostly tight range, whereas many outliers
 are noticable in other ethnic groups.", x = "Writing Scores", y = "Parental Level of Education", caption = "Kaggle: JAKKI SESHAPANPU 2018") # Added titles
 ```

@@ -34,4 +34,16 @@ ggplot(mapping = aes(y = lunch, x = math.score, color = gender))+
 # Ggplotly was added to make plot interactive 
 ggplotly()
 ```
+*In most parental levels of education, male students seem to be receiving higher math scores; distribution of scores for students receiving a standard lunch is higher.*
 
+*The sample size of each level of education could change interpretation, therefore:*
+
+```{r}
+student<- read.csv("StudentsPerformance.csv")
+student|> 
+select(lunch, math.score, writing.score, reading.score, gender, race.ethnicity, parental.level.of.education)|> 
+ggplot(mapping = aes( y = parental.level.of.education, fill = lunch))+ 
+  geom_bar()+ 
+  theme_calc()+
+  labs(title = "Level of Education vs Lunch", subtitle = "All levels have standard lunch count either equal to 50%, or more", y = "Parental Level of Education", x = "Count", caption = "Kaggle: JAKKI SESHAPANPU 2018")
+```

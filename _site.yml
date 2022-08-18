@@ -7,16 +7,16 @@ navbar:
   right:
     - text: "Home"
       href: index.html
+    - text: "Overview"
+      href: Overview.html
     - text: "About"
       href: about.html
-    - text: "Lunch"
-      href: lunch.html
-    - text: "Sources"
-      href: Sources.html
     - text: "Math"
       href: math.html
     - text: "Writing"
       href: writing.html
     - text: "Reading"
       href: reading.html
+    - text: "Sources"
+      href: Sources.html
 output: distill::distill_article
