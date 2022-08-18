@@ -88,29 +88,26 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>Student_scores: About this site</title>
+  <title>Student_scores: page</title>
 
-  <meta property="description" itemprop="description" content="Some additional details about the website"/>
 
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Student_scores: About this site"/>
+  <meta property="og:title" content="Student_scores: page"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Some additional details about the website"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Student_scores"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Student_scores: About this site"/>
-  <meta property="twitter:description" content="Some additional details about the website"/>
+  <meta property="twitter:title" content="Student_scores: page"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description"]}},"value":[{"type":"character","attributes":{},"value":["About this site"]},{"type":"character","attributes":{},"value":["Some additional details about the website"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output"]}},"value":[{"type":"character","attributes":{},"value":["page"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2087,7 +2084,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"About this site","description":"Some additional details about the website","authors":[]}
+{"title":"page","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2114,45 +2111,67 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>About this site</h1>
+<h1>page</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Some additional details about the website</p></p>
+
 </div>
 
 
 <div class="d-article">
-<h2 id="about-me">About Me</h2>
-<p>I am Elif Kuyuk, a current junior at Bartlett High School. Among many
-various hobbies, I enjoy hiking and gardening. Learning new things is
-always a pleasure, especially if accompanied with friends.</p>
-<p><strong>Contact Information</strong></p>
-<p>Email: <a href="mailto:ekuyuk04@gmail.com"
-class="email">ekuyuk04@gmail.com</a></p>
-<p>Github: <a href="https://github.com/ekuyuk"
-class="uri">https://github.com/ekuyuk</a></p>
-<h2 id="about-the-project">About the Project</h2>
-<p>This project briefly observes and analyzes what might be affecting a
-students performance. Family life, genetics, environmental cues; these
-all play a big role in a students success. Finding out the main factors,
-and potentially inspiring us students to beneficially work with such
-factors, is the main goal.</p>
-<p><em>Goals</em></p>
-<ul>
-<li>Comparing genetic factors (race, gender)</li>
-<li>Analyzing individual factors (study session before test, lunch
-type)</li>
-<li>Finding out the main factor affecting a students behavior from the
-factors included in the data set.</li>
-</ul>
-<p><em>Obstacles: Expected</em></p>
-<ul>
-<li>Organizing the data, finding out the best way to correctly visualize
-the patterns.</li>
-<li>Column/row management and graphing</li>
-</ul>
-<p>““This is Data Science””<br />
-~ Preceptor</p>
+<h2 id="overview-of-reading-scores">Overview Of Reading Scores</h2>
+<p>As seen below, ethnic Group D has a tighter range, and denser test
+scores. Female students have scores higher than the male students for
+this group; students with a parent holding a masters degree has the
+smallest range, and an average higher than other levels of education –
+this same pattern of parental level of education can be spotted in group
+C as well. Ethnic groups A, E, and B, can be seen having less students
+with a parent holding a masters degree, and looser clusters.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>student</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"StudentsPerformance.csv"</span><span class='op'>)</span></span>
+<span><span class='va'>student</span><span class='op'>|&gt;</span> </span>
+<span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>parental.level.of.education</span>, <span class='va'>math.score</span>, <span class='va'>writing.score</span>, <span class='va'>reading.score</span>, <span class='va'>gender</span>, <span class='va'>race.ethnicity</span><span class='op'>)</span><span class='op'>|&gt;</span> </span>
+<span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>parental.level.of.education</span>, x <span class='op'>=</span> <span class='va'>reading.score</span>, color <span class='op'>=</span> <span class='va'>gender</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>alpha <span class='op'>=</span> <span class='fl'>0.3</span>, size <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>race.ethnicity</span><span class='op'>)</span><span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/ggthemes/man/theme_calc.html'>theme_calc</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Reading Scores"</span>, subtitle <span class='op'>=</span> <span class='st'>"Cluster of higher scores can be observed for all race groups with a parental </span></span>
+<span><span class='st'>level of education = Associates Degree"</span>, x <span class='op'>=</span> <span class='st'>"Reading Scores"</span>, y <span class='op'>=</span> <span class='st'>"Parental Level of Education"</span>, caption <span class='op'>=</span> <span class='st'>"Kaggle: JAKKI SESHAPANPU 2018"</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="page_files/figure-html5/unnamed-chunk-1-1.png" width="624" /></p>
+</div>
+<h2 id="overview-of-math-scores">Overview of Math Scores</h2>
+<p>Compared to reading scores, all groups of scores have higher
+averages. Male students seem to be dominating higher scores in most
+groups, and score distrubiton seems to be equal in a few groups (such as
+group E and A).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>student</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"StudentsPerformance.csv"</span><span class='op'>)</span></span>
+<span><span class='co'># Starting data analysis</span></span>
+<span><span class='va'>student</span><span class='op'>|&gt;</span> </span>
+<span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>parental.level.of.education</span>, <span class='va'>math.score</span>, <span class='va'>writing.score</span>, <span class='va'>reading.score</span>, <span class='va'>gender</span>, <span class='va'>race.ethnicity</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
+<span><span class='co'># Command "select()" allows for only the wanted columns to be viewed  </span></span>
+<span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>parental.level.of.education</span>, x <span class='op'>=</span> <span class='va'>math.score</span>, color <span class='op'>=</span> <span class='va'>gender</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>alpha <span class='op'>=</span> <span class='fl'>0.3</span>, size <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>race.ethnicity</span><span class='op'>)</span><span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/ggthemes/man/theme_calc.html'>theme_calc</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Math Scores"</span>, subtitle <span class='op'>=</span> <span class='st'>"Male students have higher scores."</span>, x <span class='op'>=</span> <span class='st'>"Math Scores"</span>, y <span class='op'>=</span> <span class='st'>"Parental Level of Education"</span>, caption <span class='op'>=</span> <span class='st'>"Kaggle: JAKKI SESHAPANPU 2018"</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="page_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
+</div>
+<h2 id="overview-of-writing-scores">Overview of Writing Scores</h2>
+<p>Strongly contrasting the gender distribution for math scores, the
+higher scores for writing are dominated by female students. This pattern
+can be observed in every ethnic group, without pause. Similar to the
+other scores, students with a parent holding a masters degree have a
+higher score average, and smaller range for all groups except A. Group B
+and C have the lowest average writing score when parental level of
+education is “high school”</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->

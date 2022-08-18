@@ -5,82 +5,33 @@ description: |
   handle and control these factors will increase a students performance.
 site: distill::distill_website
 ---
-## A Quick Glance 
 
-A persons character, personality, all morph and set whilst their in school. Their teachers, the environment they're in, the academic feedback they receive; all set the stones for the path they will pursue in life. In most scenarios, higher academic performance leads to higher satisfaction in the career they pursue.  
-
-Using data from Kaggle, 4 different factors were observed. 
-
-* Ethnicity 
-* Gender 
-* Parental Level of Education 
-* Lunch Type 
-
-These factors were then compared with reading, writing, and math scores. 
+A students success and beneficial academic performance depends on various factors. The following data was pulled from Kaggle. Graphs were used to represent the correlation between test scores and parental level of education, lunch type, race, test preparation, and gender. Students that were not taking a free/reduced lunch, had taken the preparation course, and had parents with an education level above high school were observed to have higher scores.  
  
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(ggthemes)
+library(plotly)
 ```
-
-## Overview Of Reading Scores
-
-As seen below, ethnic Group D has a tighter range, and denser test scores. Female students have scores higher than the male students for this group; students with a parent holding a masters degree has the smallest range, and an average higher than other levels of education -- this same pattern of parental level of education can be spotted in group C as well. Ethnic groups A, E, and B, can be seen having less students with a parent holding a masters degree, and looser clusters. 
 
 ```{r}
-student<- read.csv("StudentsPerformance.csv")
-student|> 
-select(parental.level.of.education, math.score, writing.score, reading.score, gender, race.ethnicity)|> 
-ggplot(mapping = aes(y = parental.level.of.education, x = reading.score, color = gender))+
-  geom_point(alpha = 0.3, size = 5) + 
-  facet_wrap(~race.ethnicity)+ 
-  theme_calc()+
-  labs(title = "Reading Scores", subtitle = "Cluster of higher scores can be observed for all race groups with a parental 
-level of education = Associates Degree", x = "Reading Scores", y = "Parental Level of Education", caption = "Kaggle: JAKKI SESHAPANPU 2018")
+student <- read.csv("StudentsPerformance.csv")
 
+# Assign plot to "main" variable 
+main <- student|> 
+# Select wanted columns to analyze
+select(lunch, math.score, writing.score, reading.score, gender, race.ethnicity, parental.level.of.education)|> 
+# Using ggplot, start mapping. Assign variables
+ggplot(mapping = aes(y = lunch, x = math.score, color = gender))+ 
+  # A scatter plot was picked to best show the data
+   geom_point(alpha = 0.3, size = 3) +
+  # View how parental level of education affects scores by using the function face_wrap
+  facet_wrap(~parental.level.of.education) + 
+  # Preferred theme was added
+  theme_calc() + 
+  labs(title = "Factors Affecting Math Test Scores", x = "Math Scores", y = "Lunch Type", caption = "Kaggle: JAKKI SESHAPANPU 2018")  
+# Ggplotly was added to make plot interactive 
+ggplotly()
 ```
-## Overview of Math Scores 
 
-Compared to reading scores, all groups of scores have higher averages. Male students seem to be dominating higher scores in most groups, and score distrubiton seems to be equal in a few groups (such as group E and A).
-
-```{r}
-student<- read.csv("StudentsPerformance.csv")
-student|> 
-select(parental.level.of.education, math.score, writing.score, reading.score, gender, race.ethnicity)|> 
-ggplot(mapping = aes(y = parental.level.of.education, x = math.score, color = gender))+
-  geom_point(alpha = 0.3, size = 5) + 
-  facet_wrap(~race.ethnicity)+ 
-  theme_calc()+
-  labs(title = "Math Scores", subtitle = "Male students have higher scores.", x = "Math Scores", y = "Parental Level of Education", caption = "Kaggle: JAKKI SESHAPANPU 2018")
-```
-## Overview of Writing Scores 
-
-Strongly contrasting the gender distribution for math scores, the higher scores for writing are dominated by female students. This pattern can be observed in every ethnic group, without pause. Similar to the other scores, students with a parent holding a masters degree have a higher score average, and smaller range for all groups except A. Group B and C have the lowest average writing score when parental level of education is "high school" 
-
-```{r}
-student<- read.csv("StudentsPerformance.csv")
-student|> 
-select(parental.level.of.education, math.score, writing.score, lunch, reading.score, gender, race.ethnicity)|> 
-ggplot(mapping = aes(y = parental.level.of.education, x = writing.score, color = gender))+
-  geom_point(alpha = 0.3, size = 5) + 
-  facet_wrap(~race.ethnicity) +
-  theme_calc()+
-  labs(title = "Writing Scores", 
-       subtitle = "Group C and D have a mostly tight range, whereas many outliers
-are noticable in other ethnic groups.", x = "Writing Scores", y = "Parental Level of Education", caption = "Kaggle: JAKKI SESHAPANPU 2018")
-```
-These plots, comparing parental level of education, alongside the graphics under the "lunch" page, can lead to many different conclusions and inferences. 
-
-## Summary 
-
-Standard lunch, parental level of education = masters, bachelors, associates degree, and some college, all show higher scores on average compared to the rest. Ethnically, Group D and C have higher averages compared to the rest. 
-
-**Possible Application**
-
-* To potentially increase test scores, families and schools can aim to provide all students with a standard lunch. 
-* Lower education costs would encourage many to continue with their education. 
-  + Those that do attain certain degrees show care for education and their life; this reflects on their children, who also see education of equal worth, if nor more. Of course, there are many families with parents of minimal education, and children of extreme determination and self-respect. 
-* Further Studies can be conducted to understand which learning method biologically works better for each gender, which could improve the low scores of females in certain categories (this would also apply to male students in low-score clusters.)
-
-Education is how the culture of a generation is set; its value needs to be comprehended by all for an ignorance-free society. 

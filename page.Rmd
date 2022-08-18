@@ -1,0 +1,51 @@
+---
+title: "page"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggthemes)
+```
+
+## Overview Of Reading Scores
+
+As seen below, ethnic Group D has a tighter range, and denser test scores. Female students have scores higher than the male students for this group; students with a parent holding a masters degree has the smallest range, and an average higher than other levels of education -- this same pattern of parental level of education can be spotted in group C as well. Ethnic groups A, E, and B, can be seen having less students with a parent holding a masters degree, and looser clusters. 
+
+```{r}
+student<- read.csv("StudentsPerformance.csv")
+student|> 
+select(parental.level.of.education, math.score, writing.score, reading.score, gender, race.ethnicity)|> 
+ggplot(mapping = aes(y = parental.level.of.education, x = reading.score, color = gender))+
+  geom_point(alpha = 0.3, size = 5) + 
+  facet_wrap(~race.ethnicity)+ 
+  theme_calc()+
+  labs(title = "Reading Scores", subtitle = "Cluster of higher scores can be observed for all race groups with a parental 
+level of education = Associates Degree", x = "Reading Scores", y = "Parental Level of Education", caption = "Kaggle: JAKKI SESHAPANPU 2018")
+```
+
+## Overview of Math Scores 
+
+Compared to reading scores, all groups of scores have higher averages. Male students seem to be dominating higher scores in most groups, and score distrubiton seems to be equal in a few groups (such as group E and A).
+
+```{r}
+student<- read.csv("StudentsPerformance.csv")
+# Starting data analysis
+student|> 
+select(parental.level.of.education, math.score, writing.score, reading.score, gender, race.ethnicity)|>
+# Command "select()" allows for only the wanted columns to be viewed  
+ggplot(mapping = aes(y = parental.level.of.education, x = math.score, color = gender))+
+  geom_point(alpha = 0.3, size = 5) + 
+  facet_wrap(~race.ethnicity)+ 
+  theme_calc()+
+  labs(title = "Math Scores", subtitle = "Male students have higher scores.", x = "Math Scores", y = "Parental Level of Education", caption = "Kaggle: JAKKI SESHAPANPU 2018")
+```
+## Overview of Writing Scores 
+
+Strongly contrasting the gender distribution for math scores, the higher scores for writing are dominated by female students. This pattern can be observed in every ethnic group, without pause. Similar to the other scores, students with a parent holding a masters degree have a higher score average, and smaller range for all groups except A. Group B and C have the lowest average writing score when parental level of education is "high school" 
+
+```{r}
+
+```
+

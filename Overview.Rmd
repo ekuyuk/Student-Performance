@@ -1,0 +1,43 @@
+---
+title: "Overview"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## A Quick Glance 
+
+A persons character, personality, all morph and set whilst their in school. Their teachers, the environment they're in, the academic feedback they receive; all set the stones for the path they will pursue in life. In most scenarios, higher academic performance leads to higher satisfaction in the career they pursue.  
+
+Using data from Kaggle, 4 different factors were observed. 
+
+* Ethnicity 
+* Gender 
+* Parental Level of Education 
+* Lunch Type 
+
+These factors were then compared with reading, writing, and math scores. 
+
+
+
+## Summary 
+
+*Racially/Ethnically:* Groups C and D had higher averages compared to other groups. 
+
+*Test Preparation Course:* It was very blunt and clear that students who took the course recieved higher scores than students who did not. 
+
+*Standard Lunch & Free and Reduced Lunch:* Students recieving a standard lunch could be seen doing better across all three subjects, no matter the race or parental level of education. 
+
+*Parental Level of Education:* Students with parents of some high school education were, in most categories, recieving lower scores compared to the rest. Students that had parents with an education level above high school were observed to have higher scores. 
+
+**Possible Application**
+
+* To potentially increase test scores, families and schools can aim to provide all students with a standard lunch. 
+* Lower education costs would encourage many to continue with their education. 
+  + Those that do attain certain degrees show care for education and their life; this reflects on their children, who also see education of equal worth, if nor more. Of course, there are many families with parents of minimal education, and children of extreme determination and self-respect. 
+* Further Studies can be conducted to understand which learning method biologically works better for each gender, which could improve the low scores of females in certain categories (this would also apply to male students in low-score clusters.)
+
+Education is how the culture of a generation is set; its value needs to be comprehended by all for an ignorance-free society. 

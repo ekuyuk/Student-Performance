@@ -13,4 +13,10 @@ navbar:
       href: lunch.html
     - text: "Sources"
       href: Sources.html
+    - text: "Math"
+      href: math.html
+    - text: "Writing"
+      href: writing.html
+    - text: "Reading"
+      href: reading.html
 output: distill::distill_article

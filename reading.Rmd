@@ -1,0 +1,46 @@
+---
+title: "Reading Scores"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(ggthemes)
+```
+
+
+```{r}
+student<- read.csv("StudentsPerformance.csv")
+student|> 
+select(lunch,parental.level.of.education, math.score, writing.score, reading.score, gender, race.ethnicity)|> 
+ggplot(mapping = aes(y = lunch, x = reading.score))+ 
+  geom_boxplot(alpha = 0.5, color = "brown1", size = 1)+ 
+  facet_wrap(~gender)+ 
+  theme_calc()+
+  theme(panel.background = element_rect(fill = "azure2")) +
+  labs(title = "Lunch Type vs Reading Score", subtitle = "Higher score quartile for both male and female students recieving a standard lunch.", x = "Reading Scores", y = "Lunch Type", caption = "Kaggle: JAKKI SESHAPANPU 2018")
+```
+
+```{r}
+student<- read.csv("StudentsPerformance.csv")
+student|> 
+select(parental.level.of.education, math.score, writing.score, reading.score, gender, race.ethnicity)|> 
+ggplot(mapping = aes(y = parental.level.of.education, x = reading.score, color = gender))+
+  geom_point(alpha = 0.3, size = 3) + 
+  facet_wrap(~race.ethnicity)+ 
+  theme_calc()+
+  labs(title = "Reading Scores", x = "Reading Scores", y = "Parental Level of Education", caption = "Kaggle: JAKKI SESHAPANPU 2018")
+```
+```{r}
+student<- read.csv("StudentsPerformance.csv")
+student|> 
+select(parental.level.of.education, reading.score, gender, test.preparation.course)|> 
+ggplot(mapping = aes( y = test.preparation.course, x = reading.score)) + 
+  geom_boxplot() + 
+facet_wrap(~gender) + 
+  theme_calc()+ 
+  theme(panel.background = element_rect(fill = "azure2")) + 
+  labs(title = "How Preparation Affects Test Scores", x = "Reading Scores", y = "Test Preparation Course", subtitle = "Female students have higher averages in both categories.", caption = "Kaggle: JAKKI SESHAPANPU 2018")
+```
+

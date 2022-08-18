@@ -1,0 +1,59 @@
+---
+title: "Writing Scores "
+output: distill::distill_article
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(ggthemes)
+```
+**1.** 
+```{r}
+student<- read.csv("StudentsPerformance.csv")
+
+student|> 
+# select wanted columns
+select(lunch, math.score, writing.score, reading.score, gender, race.ethnicity)|> 
+# start plotting 
+ggplot(mapping = aes(y = lunch, x = writing.score)) + 
+# using a boxplot to compare averages
+  geom_boxplot(alpha = 0.5, color = "brown1", size = 1) + 
+  facet_wrap(~gender)+ 
+# separated by gender, added preferred theme
+  theme_calc()+
+  theme(panel.background = element_rect(fill = "azure2")) + # added background color
+  labs(title = "Lunch Type vs Writing Score", subtitle = "Higher writing scores can be observed for students with a standard lunch. ", x = "Writing Scores", y = "Lunch Type", caption = "Kaggle: JAKKI SESHAPANPU 2018") # added titles 
+```
+
+
+**2.**
+```{r}
+student<- read.csv("StudentsPerformance.csv")
+student|> 
+#select wanted columns
+select(parental.level.of.education, math.score, writing.score, lunch, reading.score,
+gender, race.ethnicity)|> 
+ggplot(mapping = aes(y = parental.level.of.education, x = writing.score, color = gender)) + # assigns variables
+  geom_point(alpha = 0.3, size = 3) + # creates graph
+  facet_wrap(~race.ethnicity) + # seperated by ethnic group
+  theme_calc() + # added proffered theme
+  labs(title = "Writing Scores", 
+       subtitle = "Group C and D have a mostly tight range, whereas many outliers
+are noticable in other ethnic groups.", x = "Writing Scores", y = "Parental Level of Education", caption = "Kaggle: JAKKI SESHAPANPU 2018") # Added titles
+```
+
+**3.**
+```{r}
+student<- read.csv("StudentsPerformance.csv")
+
+student|> 
+select(parental.level.of.education, writing.score, gender, test.preparation.course)|> # select wanted columns
+ggplot(mapping = aes( y = test.preparation.course, x = writing.score)) + # assign variables
+  geom_boxplot() + # plot
+facet_wrap(~gender) + # separate by gender
+  theme_calc() + # add preferred theme 
+  theme(panel.background = element_rect(fill = "azure2")) + # added background color
+  labs(title = "How Preparation Affects Test Scores", x = "Writing Scores", y = "Test Preparation Course", subtitle = "There was a greater difference in scores between male students that completed the preparation course,
+and those that did not.", caption = "Kaggle: JAKKI SESHAPANPU 2018") # added titles
+```
+

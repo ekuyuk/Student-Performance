@@ -1,0 +1,51 @@
+---
+title: "Math Scores"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(ggthemes)
+library(ggplot2)
+```
+
+```{r}
+student<- read.csv("StudentsPerformance.csv")
+
+student|> 
+select(lunch, math.score, writing.score, reading.score, gender, race.ethnicity)|> # select wanted columns
+ggplot(mapping = aes(y = lunch, x = math.score)) + # Assign variables 
+  geom_boxplot(alpha = 0.5, color = "brown1", size = 1) + # plot 
+  facet_wrap(~gender)+ # separated by gender
+  theme_calc()+ # added preferred theme
+  theme(panel.background = element_rect(fill = "azure2")) + # added background color
+  labs(title = "Lunch Type vs Math Score", subtitle = "Higher writing scores can be observed for students with a standard lunch. ", x = "Math Scores", y = "Lunch Type", caption = "Kaggle: JAKKI SESHAPANPU 2018") # added titles to plot
+```
+
+```{r}
+student<- read.csv("StudentsPerformance.csv")
+# Starting data analysis
+student|> 
+select(parental.level.of.education, math.score, writing.score, reading.score, gender, race.ethnicity)|>
+# Command "select()" allows for only the wanted columns to be viewed  
+ggplot(mapping = aes(y = parental.level.of.education, x = math.score, color = gender))+ 
+  # assign variables
+  geom_point(alpha = 0.3, size = 3) + # plot
+  facet_wrap(~race.ethnicity)+ # seperate by ethnic groups
+  theme_calc()+ #added preffered theme
+  labs(title = "Math Scores", subtitle = "Male students have higher scores.", x = "Math Scores", y = "Parental Level of Education", caption = "Kaggle: JAKKI SESHAPANPU 2018") # added titles 
+```
+
+```{r}
+student<- read.csv("StudentsPerformance.csv")
+
+student|> 
+select(parental.level.of.education, math.score, gender, test.preparation.course)|> # select wanted columns
+ggplot(mapping = aes( y = test.preparation.course, x = math.score)) + # assign variables
+  geom_boxplot() + # plot
+facet_wrap(~gender) + # separate by gender
+  theme_calc() + # add preferred theme
+  theme(panel.background = element_rect(fill = "azure2")) + # add background color
+  labs(title = "How Preparation Affects Test Scores", x = "Math Scores", y = "Test Preparation Course", subtitle = "Male students have higher averages in both categories.", caption = "Kaggle: JAKKI SESHAPANPU 2018") # add titles
+```

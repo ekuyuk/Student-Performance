@@ -1,6 +1,6 @@
 ---
 title: "Effects of Lunch on Student Performance"
-output: html_document
+output: distill::distill_article
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
@@ -11,6 +11,7 @@ library(ggthemes)
 After Viewing the relationship between parental levels of education, gender, and ethnicity, one wonders how these all tie in with the factor of nutrition, lunch. 
 
 *Below is the plot depicting how many students in this data were of each category, and of those, how many received either standard or free/reduced lunch.* 
+
 
 ```{r}
 student<- read.csv("StudentsPerformance.csv")
@@ -27,14 +28,16 @@ With all levels of education having about the same ratios, it awakens interest t
 
 It is clear that "high school" and "some high school" are most heavily affected by lunch type. In terms of gender distribution, in most parental levels of education and lunch types, female students have a lower average. 
 
+
 ```{r}
-student<- read.csv("StudentsPerformance.csv")
+student <- read.csv("StudentsPerformance.csv")
+
 student|> 
 select(lunch, math.score, writing.score, reading.score, gender, race.ethnicity, parental.level.of.education)|> 
 ggplot(mapping = aes(y = lunch, x = math.score, color = gender))+ 
   geom_point(alpha = 0.3, size = 4)+ 
-  facet_wrap(~parental.level.of.education)+ 
-  theme_calc()+
+  facet_wrap(~parental.level.of.education) + 
+  theme_calc() +
   labs(title = "Parental level of education vs Lunch vs Math Scores", subtitle = "Higher scores for both male and female students recieving a standard lunch.", x = "Math Scores", y = "Lunch Type", caption = "Kaggle: JAKKI SESHAPANPU 2018")
 ```
 
@@ -55,16 +58,7 @@ ggplot(mapping = aes(y = lunch, x = reading.score))+
 
 ## Plot 2
 
-```{r}
-student<- read.csv("StudentsPerformance.csv")
-student|> 
-select(lunch, math.score, writing.score, reading.score, gender, race.ethnicity)|> 
-ggplot(mapping = aes(y = lunch, x = writing.score))+ 
-  geom_boxplot(alpha = 0.5, color = "brown1", size = 2)+ 
-  facet_wrap(~gender)+ 
-  theme_calc()+
-  labs(title = "Lunch Type vs Writing Score", subtitle = "Higher writing scores can be observed for students with a standard lunch. ", x = "Writing Scores", y = "Lunch Type", caption = "Kaggle: JAKKI SESHAPANPU 2018")
-```
+
 ## Plot 3
 
 ```{r}
@@ -79,5 +73,5 @@ ggplot(mapping = aes(y = lunch, x = math.score))+
 ```
 
 
-```
+
 
